@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Movies</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+        <!--Custom CSS Link-->
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <!-- Navigation Section -->
+        <div class="navigation">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" style="background-color: transparent" href="index.html">
+                    iGenomics  
+                </a>
+        
+                <button class="navbar-toggler  border border-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a id="lmargin" class="nav-link" href="index.html" style="color: black">Home</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a id="lmargin" class="nav-link" href="data.html" style="color: black">Data</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- Content Section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <!-- Intro -->
+                    <div class="box">
+                        <h3 id="bigtitle" class="title">Improve Your Health and Wellbeing</h3>
+                        <hr>
+                        <p id="pline2"> iGenomics DNA report is designed to help you ﬁnd the underlying cause of your health risks and helps you make small lifestyle changes to help improve your overall health and wellbeing.
+                            
+                        </p>
+                        <h3>Who is the DNA Report for?</h3>
+                        <hr>
+                        <p id="pline">Whether you are looking for small habits to change or to improve some life-altering health problems, the Wellness Report can unlock knowledge that will guide you along your journey to reaching your optimal health. If you are interested in improving your overall health and wellness, you will benefit from this report.
+                        </p>
+                        <h3>Insights</h3>
+                        <hr>
+                        <div><img width="350" src="Data/DNAseq.png" alt="ERD"  > </div >
+                        
+                        <p id="pline">These DNA insights are for people who care about the future of their health. You know that when it comes to your body, you’re the expert. With this report, you will receive expert recommendations so you can navigate your health like never before.
+                        </p>
+                        <h3>Machine Learning Process</h3>
+                        <hr>
+                        <p id="pline">
+                            1. Data Pre-processing
+                            <br>
+                            The data sources were as follows with the files downloaded from each in text format.  
+                            <ul>
+                                <li> k-mer counting: Long DNA sequences are broken into k-mer length overlapping “words” and then created Words model using CountVectorizer(). Example: 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’.  
+                                    
+                                    
+                                </li>
+                                <li> In genomics, to these types of manipulations are called as "k-mer counting", counting the occurrences of each possible k-mer sequence and can be realised by using Python NLP natural language processing tools.
+                                </li>
+                            </ul>	
+
+                            2. Data Modeling using Machine Learning libraries
+                            <br>
+    
+                            <ol> 
+                                <li>FIT: Process DNA sequence datasets for input features/ vectors of uniform length
+                                </li>
+                                <li>TRAIN: Build classification model Trained on the human DNA sequence TO predict a gene family 
+                                </li>
+                                <li>PREDICT: Test model with human and chimpanzee DNA sequence Datasets 
+                                </li>  
+                                <li>PRECISION & RECALL: compare the accuracies by Creating Confusion matrix to compare predicted Vs  actual values 
+                                </li>
+                            </ul>
+
+
+                            3. Precision and Recall
+                            <br>
+                            Tested on human DNA and Chimpanzee DNA sequence datasets and compare accuracies 
+
+                                <li>By creating Confusion matrix to describe performance of model 
+                                </li>
+                                <li>Using sklearn.metrics to get Accuracy, Precision, Recall, F1)
+                                </li>
+                 
+                            </ol>
+                  
+                        </p>
+                        <h3>Conclusions</h3>
+                        <hr>
+                        <p id="pline">Overall, the DNA sequencing project was a great success returning great accuracies when tested with the Chimpanzee dataset. 
+                        
+                        </p>
+                        <div>
+                            <img  src="Data/Picture.gif" alt="5"> <h3>Thank You! </h3>
+                            <hr>
+                            
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-md-12">
+                    <!-- Small Plots -->
+                    <div class="box">
+                        <h3 id="titleleft" class="title">DNA Report</h3>
+                        <hr>
+                        <div class="container">
+                            <div style="padding-bottom: 20px;">
+                                <div>
+                                        <img  src="Data/1.png" alt="1" width="800">
+                                </div>
+                                <hr>
+                                <div>
+                                        <img  src="Data/2.png" alt="2" width="800">
+                                </div>
+                                <hr>
+                                <div>
+                                        <img src="Data/3.png" alt="3" width="800">
+                                </div>
+                                <hr>
+                                <div>
+                                        <img  src="Data/4.png" alt="4" width="800">
+                                </div>
+                                <div>
+                                    <img  src="Data/5.png" alt="4" width="800">
+                                </div>
+                                <div>
+                                <img  src="Data/6.png" alt="4" width="800">
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <!-- Footer Section -->
+       
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>  
+    </body>
+
+</html>
