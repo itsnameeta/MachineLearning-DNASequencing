@@ -9,15 +9,15 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous">
-        <!--Custom CSS Link-->
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <!--Custom CSS Link
+        <link ... href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet"/>        -->
     </head>
 
     <body>
         <!-- Navigation Section -->
         <div class="navigation">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" style="background-color: transparent" href="index.html">
+                <a id="lmargin" class="navbar-brand nav-link" style="background-color: transparent" href="{{ url_for('get_index') }}"> 
                     iGenomics  
                 </a>
         
@@ -28,11 +28,11 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a id="lmargin" class="nav-link" href="index.html" style="color: black">Home</a>
+                            <a id="lmargin" class="nav-link" href="{{ url_for('get_index') }}"> Home</a>
                         </li>
                         
                         <li class="nav-item">
-                            <a id="lmargin" class="nav-link" href="data.html" style="color: black">Data</a>
+                            <a id="lmargin" class="nav-link" href="{{ url_for('get_upload') }}"> Upload for DNA analysis</a>
                         </li>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@
                         </p>
                         <h3>Insights</h3>
                         <hr>
-                        <div><img width="350" src="Data/DNAseq.png" alt="ERD"  > </div >
+                        <div><img width="350" src="{{ url_for('static', filename='Data/DNAseq.png') }}"  alt="ERD"  > </div >
                         
                         <p id="pline">These DNA insights are for people who care about the future of their health. You know that when it comes to your body, you’re the expert. With this report, you will receive expert recommendations so you can navigate your health like never before.
                         </p>
@@ -107,7 +107,7 @@
                         
                         </p>
                         <div>
-                            <img  src="Data/Picture.gif" alt="5"> <h3>Thank You! </h3>
+                            <img  src="{{ url_for('static', filename='Data/Picture.gif') }}" alt="5"> <h3>Thank You! </h3>
                             <hr>
                             
                     </div>
@@ -122,25 +122,25 @@
                         <div class="container">
                             <div style="padding-bottom: 20px;">
                                 <div>
-                                        <img  src="Data/1.png" alt="1" width="800">
+                                        <img  src="{{ url_for('static', filename='Data/1.png') }}" alt="1" width="800">
                                 </div>
                                 <hr>
                                 <div>
-                                        <img  src="Data/2.png" alt="2" width="800">
+                                        <img   src="{{ url_for('static', filename='Data/2.png') }}" alt="2" width="800">
                                 </div>
                                 <hr>
                                 <div>
-                                        <img src="Data/3.png" alt="3" width="800">
+                                        <img  src="{{ url_for('static', filename='Data/3.png') }}" alt="3" width="800">
                                 </div>
                                 <hr>
                                 <div>
-                                        <img  src="Data/4.png" alt="4" width="800">
+                                        <img   src="{{ url_for('static', filename='Data/4.png') }}" alt="4" width="800">
                                 </div>
                                 <div>
-                                    <img  src="Data/5.png" alt="4" width="800">
+                                    <img   src="{{ url_for('static', filename='Data/5.png') }}" alt="4" width="800">
                                 </div>
                                 <div>
-                                <img  src="Data/6.png" alt="4" width="800">
+                                <img   src="{{ url_for('static', filename='Data/6.png') }}" alt="4" width="800">
                                </div>
                             </div>
                         </div>

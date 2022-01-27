@@ -1,95 +1,63 @@
-import streamlit as st
+from flask import Flask
+from flask import render_template, request, redirect, url_for
 from Bio import SeqIO
 import neatbio.sequtils as utils
 from collections import Counter
 from Bio.Seq import Seq
+import requests
 import io
 import matplotlib.pyplot as plt
 import matplotlib
-st.set_option('deprecation.showPyplotGlobalUse', False)
 import numpy as np
+import base64
 
 
-def main():
+app = Flask(__name__)
+app.debug = True
 
-    st.title("iGENOMICS")
-    options = ["Introduction", "DNA sequence Analysis"]
-    choices = st.sidebar.selectbox("Choose Your Options",options)
+@app.route("/")
+def get_index():
+    return render_template("index.html")
 
-    if choices == "Introduction":
-        st.header("Welcome to our DNA Sequence Analysis! ")
+@app.route("/intro")
+def get_intro():
+    return render_template("intro.html")
 
-    elif choices == "DNA sequence Analysis":
-        st.header("For DNA sequence Analysis:")
-        seq=st.file_uploader("Upload .FASTA file for Genome DNA analysis", type = ["fasta","fa"])
+@app.route("/upload")
+def get_upload():
+    print("**********Before file upload")
+    test = []
+    test.append({})
+    return render_template("upload.html", data={}) 
 
-        if seq is not None:
-            data =seq.read()
-            decdata = data.decode('UTF-8')
-            dnarecord= SeqIO.read(io.StringIO(decdata),"fasta")
-            dnaseq= dnarecord.seq
+@app.route('/sequence', methods=['POST'])
+#@app.route('/sequence')
+def upload_file():
+    print("**********After file upload")
+    
+    seqdata= []
 
-            details= st.radio ("Details of the DNA by NCBI",("DNA Description", "Sequence"))
-            if details == "DNA Description":
-                st.write(dnarecord.description)
-            elif details == "Sequence":
-                st.write (dnarecord.seq)
+    uploaded_file = request.files['file']
 
-            #Nucleotide
-            st.subheader ("Nucleotide Frequency :")
-            dnafreq=Counter(dnaseq)
-            st.write(dnafreq)
-            adenine=st.color_picker("Adenine Colour ")
-            guanine=st.color_picker("Guanine Colour ")
-            thymine=st.color_picker("Thymine Colour ")
-            cytosine=st.color_picker("Cytosine Colour ")
+    data = uploaded_file.read()
+    
+    decdata = data.decode('UTF-8')
+    dnarecord= SeqIO.read(io.StringIO(decdata),"fasta")
+    dnasequence= dnarecord.seq
+    dnafreq=Counter(dnasequence)
 
+    seqdata.append(dnarecord)
+    seqdata.append(dnasequence)
+    seqdata.append(dnafreq)
 
-            if st.button("Plot frequency"):
-                bar=plt.bar(dnafreq.keys(),dnafreq.values())
-                bar[0].set_color(adenine)
-                bar[1].set_color(guanine)
-                bar[2].set_color(thymine)
-                bar[3].set_color(cytosine)
-                fig, ax = plt.subplots()
-                st.pyplot()
+    seqdataList = {'dnarecord': dnarecord, 'dnasequence': dnasequence, 'dnafreq': dnafreq}
+    
 
-
-            st.subheader("DNA Composition is as below:")
-
-            gc= utils.gc_content(str(dnaseq))
-            at= utils.at_content(str(dnaseq))
-            st.json({"GC Content(for heat stability)": gc,"AT Content":at })
-
-            #Protein synthesis
-            st.subheader("Protein Synthesis:")
-            ps = dnaseq.translate()
-            aafreq= Counter(str(ps))
-            if st.checkbox("Transcription:"):
-                st.write(dna_seq.transcribe())
-            elif st.checkbox("Translation:"):
-                st.write(dna_seq.translate())
-            elif st.checkbox("Complement:"):
-                st.write(dna_seq.complement())
-            elif st.checkbox("Amino Acid frequency :"):
-                st.write(aa_freq)
-
-            elif st.checkbox("Plot the Amino Acid frequency:"):
-                aacolor=st.color_picker("Pick the Amino acid color:")
-                plt.bar(aafreq.keys(),aa_freq.values(),color=aacolor)
-                st.pyplot()
-
-            elif st.checkbox("The complete Amino acid name is given as"):
-                aaname= str(ps).replace("*","")
-                aa3= utils.convert_1to3(aaname)
-                st.write(aaname)
-                st.write("========================")
-                st.write(aa3)
+    print("seqdataList")
+    print (seqdataList)
 
 
+    return render_template("sequence.html", data=seqdataList) 
 
-                st.write("========================")
-                st.write(utils.get_acid_name(aa3))
-
-if __name__=='__main__':
-	main()
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -1,0 +1,7 @@
+flask
+gunicorn
+Bio
+neatbio
+requests
+matplotlib
+numpy
